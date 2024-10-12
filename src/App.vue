@@ -7,8 +7,6 @@
         <HelloWorld msg="You did it!" />
 
         <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
           <RouterLink to="/login">Login</RouterLink>
           <RouterLink to="/register">Register</RouterLink>
           <RouterLink to="/dashboard">Dashboard</RouterLink>
