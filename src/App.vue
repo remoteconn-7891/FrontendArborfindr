@@ -10,6 +10,7 @@
           <RouterLink to="/login">Login</RouterLink>
           <RouterLink to="/register">Register</RouterLink>
           <RouterLink to="/dashboard">Dashboard</RouterLink>
+          <RouterLink to ="/profile">Profile</RouterLink>
         </nav>
       </div>
     </header>

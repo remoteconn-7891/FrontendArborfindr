@@ -2,31 +2,15 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from '../components/pages/LoginPage.vue';
 import DashboardPage from '../components/pages/DashboardPage.vue';
 import RegisterPage from '../components/pages/RegisterPage.vue';
+import ProfilePage from '../components/pages/profile.vue';
 
 
 
 const routes = [
-  {
-    path: '/login',
-    name: 'Login',
-    component: LoginPage,
-  },
-  {
-    path: '/register',
-    name: 'Register',
-    component: RegisterPage,
-  },
-  {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: DashboardPage,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue'),
-    
-  }
+  { path: '/', component: LoginPage },
+  { path: '/register', component: RegisterPage },
+  { path: '/dashboard', component: DashboardPage },
+  { path: '/profile', component: ProfilePage }, 
 ];
 
 const router = createRouter({
