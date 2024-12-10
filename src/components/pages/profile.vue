@@ -17,8 +17,9 @@
                 </div>
   
                 <p><strong>Name:</strong> {{ user.name }}</p>
-                <p><strong>Email:</strong> {{ user.email }}</p>
-                <p><strong>Joined on:</strong> {{ user.created_at }}</p>
+                <p><strong>City:</strong> {{ user.city }}</p>
+                <p><strong>State:</strong> {{ user.state }}</p>
+                <p><strong>Services needed:</strong> {{ user.services }}</p>
   
                 <h6 class="mt-4">Saved Searches</h6>
                 <ul v-if="savedSearches.length">
@@ -47,8 +48,9 @@
   
   interface User {
     name: string;
-    email: string;
-    created_at: string; // Assuming the API provides this
+    city: string;
+    state: string;
+    services: string; // Assuming the API provides this
   }
   
   export default defineComponent({
