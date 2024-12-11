@@ -7,10 +7,11 @@
         <HelloWorld msg="You did it!" />
 
         <nav>
-          <RouterLink to="/login">Login</RouterLink>
+          <RouterLink to="/login">LoginPage</RouterLink>
           <RouterLink to="/register">Register</RouterLink>
           <RouterLink to="/dashboard">Dashboard</RouterLink>
           <RouterLink to ="/profile">Profile</RouterLink>
+          <RouterLink to ="/search">SearchArborists</RouterLink>
         </nav>
       </div>
     </header>
