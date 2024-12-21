@@ -53,52 +53,60 @@
     </LayoutDiv>
  </template>
    
- <script>
- import axios from 'axios';
- import LayoutDiv from '../LayoutDiv.vue';
+   <script>
+   import axios from 'axios';
+   import LayoutDiv from '../LayoutDiv.vue';
    
- export default {
-   name: 'LoginPage',
-   components: {
-     LayoutDiv,
-   },
-   data() {
-     return {
-         email:'',
-         password:'',
-         validationErrors:{},
-         isSubmitting:false,
-     };
-   },
-   created() {
-     if(localStorage.getItem('token') != "" && localStorage.getItem('token') != null){
-         this.$router.push('/dashboard')
-     }
-   },
-   methods: {
-      loginAction(){
-         this.isSubmitting = true
-         let payload = {
-             email: this.email,
-             password: this.password,
-         }
-         axios.post('/api/login', payload)
-           .then(response => {
-             localStorage.setItem('token', response.data.token)
-             this.$router.push('/dashboard')
-             return response
+   export default {
+     name: 'LoginPage',
+     components: {
+       LayoutDiv,
+     },
+     data() {
+       return {
+         email: '',
+         password: '',
+         validationErrors: {},
+         isSubmitting: false,
+         user: null, // add user data for testing the API
+       };
+     },
+     created() {
+       // Test API call here
+       this.testApiCall();
+     },
+     methods: {
+       testApiCall() {
+         // Example of calling a simple API endpoint from Django
+         axios.get('/api/user', { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
+           .then((response) => {
+             console.log('API call successful:', response);
+             this.user = response.data;
            })
-           .catch(error => {
-             this.isSubmitting = false
-            if (error.response.data.errors != undefined) {
-                 this.validationErrors = error.response.data.errors
-             }
-             if (error.response.data.error != undefined) {
-                 this.validationErrors = error.response.data.error
-             }
-             return error
+           .catch((error) => {
+             console.error('API call failed:', error);
            });
-      }
-   },
- };
- </script>
+       },
+       loginAction() {
+         this.isSubmitting = true;
+         let payload = {
+           email: this.email,
+           password: this.password,
+         };
+         axios
+           .post('/api/login', payload)
+           .then((response) => {
+             localStorage.setItem('token', response.data.token);
+             this.$router.push('/dashboard');
+           })
+           .catch((error) => {
+             this.isSubmitting = false;
+             if (error.response.data.errors != undefined) {
+               this.validationErrors = error.response.data.errors;
+             }
+           });
+       },
+     },
+   };
+   </script>
+   

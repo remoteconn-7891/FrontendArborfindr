@@ -5,16 +5,16 @@ import App from './App.vue';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 
-const app = createApp(App);
-
-// Set up axios default base URL
+// Set up axios default base URL using environment variable
 axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
 
-// Use the API key in your headers if needed
+// Optionally, use the API key in headers if needed
 axios.interceptors.request.use(function (config) {
     config.headers['X-Binarybox-Api-Key'] = import.meta.env.VITE_APP_API_KEY;
     return config;
 });
+
+const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);

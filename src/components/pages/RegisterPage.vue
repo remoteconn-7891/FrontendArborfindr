@@ -34,7 +34,7 @@
                                     class="form-control"
                                     id="email"
                                     name="email"
-                                    v-models="email"
+                                    v-model="email"
                                     />
                                     <div v-if="validationErrors.email" class="flex flex-col">
                                         <small class="text-danger">
@@ -69,7 +69,7 @@
                                     class="form-control"
                                     id="confirm_password"
                                     name="confirm_password"
-                                    v-models="confirmPassword"
+                                    v-model="confirmPassword"
                                     />
                             </div>
                             <div class="d-grid gap-2">
