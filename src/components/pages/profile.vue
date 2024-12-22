@@ -88,7 +88,7 @@
             headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
           })
           .then((response) => {
-            this.savedSearches = response.data.searches;
+            this.savedSearches = response.data.searches || [];
           })
           .catch(() => {
             console.log('No saved searches found.');

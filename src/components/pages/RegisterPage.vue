@@ -98,46 +98,46 @@ import LayoutDiv from '../LayoutDiv.vue';
 export default {
   name: 'RegisterPage',
   components: {
-    LayoutDiv,  
+    LayoutDiv,
   },
   data() {
     return {
-        name:'',
-        email:'',
-        password:'',
-        confirmPassword:'',
-        validationErrors:{},
-        isSubmitting:false,
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      validationErrors: {},
+      isSubmitting: false,
     };
   },
   created() {
-    if(localStorage.getItem('token') != "" && localStorage.getItem('token') != null){
-        this.$router.push('/dashboard')
+    if (localStorage.getItem('token') && localStorage.getItem('token') !== '') {
+      this.$router.push('/dashboard');
     }
   },
   methods: {
-    registerAction(){
-        this.isSubmitting = true
-        let payload = {
-            name:this.name,
-            email: this.email,
-            password: this.password,
-            password_confirmation: this.confirmPassword
-        }
-        axios.post('/api/register', payload)
-        .then(response => {
-            localStorage.setItem('token', response.data.token)
-            this.$router.push('/dashboard')
-            return response
+    registerAction() {
+      this.isSubmitting = true;
+      let payload = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        password_confirmation: this.confirmPassword,
+      };
+
+      axios
+        .post('/api/register', payload)
+        .then((response) => {
+          localStorage.setItem('token', response.data.token);
+          this.$router.push('/dashboard');
         })
-        .catch(error => {
-            this.isSubmitting = false
-            if (error.response.data.errors != undefined) {
-                this.validationErrors = error.response.data.errors
-            }
-            return response
+        .catch((error) => {
+          this.isSubmitting = false;
+          if (error.response && error.response.data.errors) {
+            this.validationErrors = error.response.data.errors;
+          }
         });
-    }
-  }
-}
+    },
+  },
+};
 </script>
