@@ -18,8 +18,10 @@ export default defineConfig({
     }
   },
 
+
   server: {
     hmr: {
       overlay: false, // Disable the overlay for HMR
     },
+    port: 5175, // port 5175 configuration goes here
 }})
