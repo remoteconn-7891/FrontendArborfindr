@@ -13,7 +13,15 @@
           <div v-if="dashboardData">
             <p><strong>Welcome, {{  dashboardData.name }}!</strong></p>
             <p>Your current location: {{  dashboardData.city }}, {{ dashboardData.state }}, {{ dashboardData.zip }}, {{ dashboardData.profilePic }}</p>
-
+            <div>
+              <img
+                v-if="dashboardData.profilePic"
+                :src="dashboardData.profilePic"
+                alt="Profile Picture"
+                class="profile-pic"
+              />
+              <p v-else>No profile picture available.</p>
+            </div>
             <h6 class="mt-4">Pending Service Requests</h6>
             <ul v-if="dashboardData.pendingRequests.length">
               <li v-for="(request, index) in dashboardData.pendingRequests" :key="index">
