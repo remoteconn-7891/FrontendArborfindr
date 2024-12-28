@@ -56,7 +56,6 @@
    <script>
    import axios from 'axios';
    import LayoutDiv from '../LayoutDiv.vue';
-   
    export default {
      name: 'LoginPage',
      components: {
