@@ -10,15 +10,7 @@
         height="125"
       />
 
-      <div class="wrapper">
-        <nav>
-          <RouterLink to="/login">LoginPage</RouterLink>
-          <RouterLink to="/register">Register</RouterLink>
-          <RouterLink to="/dashboard">Dashboard</RouterLink>
-          <RouterLink to="/homeownerdashboard">HomeownerDashboard</RouterLink>
-          <RouterLink to="/search">SearchArborists</RouterLink>
-        </nav>
-      </div>
+      
     </header>
 
     <RouterView />
