@@ -12,7 +12,7 @@
           </div>
           <div v-if="dashboardData">
             <p><strong>Welcome, {{  dashboardData.name }}!</strong></p>
-            <p>Your current location: {{  dashboardData.city }}, {{ dashboardData.state }}, {{ dashboardData.zip }}</p>
+            <p>Your current location: {{  dashboardData.city }}, {{ dashboardData.state }}, {{ dashboardData.zip }}, {{ dashboardData.profilePic }}</p>
 
             <h6 class="mt-4">Pending Service Requests</h6>
             <ul v-if="dashboardData.pendingRequests.length">
@@ -52,6 +52,7 @@ interface DashboardData {
   city: string;
   state: string;
   zip: string;
+  profilePic: string;
   pendingRequests: { description: string; date: string }[];
   savedArborists: { name: string; companyName: string }[];
 }

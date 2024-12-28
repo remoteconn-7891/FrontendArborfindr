@@ -10,7 +10,6 @@
         height="125"
       />
 
-      
     </header>
 
     <RouterView />
