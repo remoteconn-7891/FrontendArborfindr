@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     
-      <router-link class="navbar-brand" to="/">Arborhub</router-link>>
+      <router-link class="navbar-brand" to="/">Welcome to Arborhub</router-link>>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -34,5 +34,20 @@ import { useAuthStore } from '@/stores/auth.js';  // This should now resolve cor
   
   <style scoped>
   /* You can add custom styles here if needed */
+  /* Adjust navbar size */
+.navbar {
+  padding: 10px 20px; /* Shrinks the navbar */
+}
+
+/* Adjust the space between navbar and the content */
+body {
+  padding-top: 20px; /* Adds space above the content */
+}
+
+.welcome-message {
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+}
   </style>
   
