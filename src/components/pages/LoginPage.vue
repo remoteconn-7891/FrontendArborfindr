@@ -76,7 +76,7 @@ export default {
               .post('/api/login', payload)
               .then((response) => {
                   localStorage.setItem('token', response.data.token);
-                  this.$router.push(response.data.redirect_page);
+                  this.$router.push('/homeowner-dashboard');
               })
               .catch((error) => {
                   this.isSubmitting = false;

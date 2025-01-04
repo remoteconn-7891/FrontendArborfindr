@@ -1,4 +1,3 @@
-declare module '@/stores/auth.js' {
-    export function useAuthStore(): any;
-  }
-  
+declare module '@/stores/auth' {
+  export function useAuthStore(): any;
+}

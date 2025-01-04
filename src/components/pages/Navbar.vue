@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     
-      <router-link class="navbar-brand" to="/">Welcome to Arborhub</router-link>>
+      <router-link class="navbar-brand" to="/">Welcome to Arborhub</router-link>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -25,7 +25,7 @@
   </template>
   
   <script setup lang="ts">
-import { useAuthStore } from '@/stores/auth.js';  // This should now resolve correctly
+import { useAuthStore } from '@/stores/auth';  // This should now resolve correctly
 
 
   const authStore = useAuthStore();  // Access the auth store

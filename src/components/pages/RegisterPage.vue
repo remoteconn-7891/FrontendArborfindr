@@ -46,7 +46,7 @@
                   </div>
                 </div>
                 <div class="mb-3">
-                  <label htmlFor="confirm_password"></label>
+                  <label htmlFor="confirm_password">Confirm password</label>
                   <input
                     type="password"
                     class="form-control"
@@ -96,7 +96,7 @@
     },
     created() {
       if (localStorage.getItem('token') && localStorage.getItem('token') !== '') {
-        this.$router.push('/dashboard');
+        this.$router.push('/homeowner-dashboard');
       }
     },
     methods: {
@@ -113,7 +113,7 @@
           .post('/api/register', payload)
           .then((response) => {
             localStorage.setItem('token', response.data.token);
-            this.$router.push('/dashboard');
+            this.$router.push('/homeowner-dashboard');
           })
           .catch((error) => {
             this.isSubmitting = false;
