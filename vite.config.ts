@@ -1,5 +1,5 @@
 import { fileURLToPath, URL } from 'node:url'
-
+import path from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -14,14 +14,13 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
-    }
-  },
-
+    '@': path.resolve(__dirname, './src'),
+    },
+    },
 
   server: {
     hmr: {
       overlay: false, // Disable the overlay for HMR
     },
-    port: 5175, // port 5175 configuration goes here
+    port: 5176, // port 5175 configuration goes here
 }})

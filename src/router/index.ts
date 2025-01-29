@@ -8,6 +8,7 @@ import SearchArborists from '../components/pages/SearchArborists.vue';
 
 
 
+
 const routes = [
   { path: '/', component: Home }, // Redirect `/` to `/login`
   { path: '/login', component: LoginPage },
