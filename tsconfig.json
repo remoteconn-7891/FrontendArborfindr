@@ -7,7 +7,7 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.vue"
-, "src/stores/auth.js", "src/router/index.js", "src/main.js"  ],
+, "src/stores/auth.js", "src/router/index.js", "src/main.ts"  ],
   
   "references": [
     {

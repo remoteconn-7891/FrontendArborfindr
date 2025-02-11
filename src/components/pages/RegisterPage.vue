@@ -56,11 +56,10 @@
                   />
                 </div>
                 <div class="d-grid gap-2">
-                  <button
+                   <button
                     :disabled="isSubmitting"
-                    @click="registerAction()"
                     type="button"
-                    class="btn btn-primary btn-block">Register
+                    @click="$router.push('/homeowner-dashboard')">click me
                   </button>
                   <p class="text-center">
                     Already have an account
@@ -101,19 +100,26 @@
     },
     methods: {
       registerAction() {
-        this.isSubmitting = true;
-        let payload = {
+        const payload = {
           name: this.name,
           email: this.email,
           password: this.password,
           password_confirmation: this.confirmPassword,
+
         };
+        console.log(payload);
+        console.log("successfully registered");
+        //fetch("https://jsonplaceholder.typicode.com/todos/")
+        //.then(r => r.json())
+        //.then(console.log)
   
         axios
           .post('/api/register', payload)
           .then((response) => {
             localStorage.setItem('token', response.data.token);
-            this.$router.push('/homeowner-dashboard');
+            console.log(response);
+            console.log(this.$router);
+            this.$router.push({name: 'HomeownerDashboard' });
           })
           .catch((error) => {
             this.isSubmitting = false;

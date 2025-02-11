@@ -23,7 +23,7 @@
               <p v-else>No profile picture available.</p>
             </div>
             <h6 class="mt-4">Pending Service Requests</h6>
-            <ul v-if="dashboardData.pendingRequests.length">
+            <ul v-if="dashboardData.pendingRequests.length"> 
               <li v-for="(request, index) in dashboardData.pendingRequests" :key="index">
                 {{  request.description  }} - {{ request.date }}
               </li>
