@@ -5,7 +5,8 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <router-link class="btn btn-primary" to="/">Home</router-link>
+            <router-link class="btn btn-primary" to="/">Home</router-link>Traceback (most recent call last):
+  
           </li>
           <li v-if="!authStore.isAuthenticated" class="nav-item">
             <router-link class="btn btn-success" to="/login">Sign in</router-link>
