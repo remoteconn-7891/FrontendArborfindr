@@ -27,7 +27,7 @@ export default defineConfig({
       '/api/': {
 
         target: 'http://127.0.0.1:8000',
-      
+      },
       '/homeowner/': {
         target: 'http://127.0.0.1:8000', // Replace with your Django server's address and port if different
         changeOrigin: true,
@@ -43,4 +43,4 @@ export default defineConfig({
     }
     },
   },
-})
+)
