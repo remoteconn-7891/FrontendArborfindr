@@ -81,7 +81,7 @@ export default defineComponent({
   methods: {
     fetchDashboardData() {
       axios
-        .get('/api/homeowner-dashboard', {
+        .get('homeowner/profile/', {
           headers: { Authorization: 'Bearer ' + localStorage.getItem('token') },
         })
         .then((response) => {

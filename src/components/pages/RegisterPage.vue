@@ -7,16 +7,16 @@
               <h5 class="card-title mb-4">Register</h5>
               <form>
                 <div class="mb-3">
-                  <label htmlFor="name" class="form-label">Name</label>
+                  <label htmlFor="username" class="form-label">Username</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="name"
-                    name="name"
-                    v-model="name"
+                    id="username"
+                    name="username"
+                    v-model="username"
                   />
-                  <div v-if="validationErrors.name" class="flex flex-col">
-                    <small class="text-danger">{{ validationErrors?.name[0] }}</small>
+                  <div v-if="validationErrors.username" class="flex flex-col">
+                    <small class="text-danger">{{ validationErrors?.username[0] }}</small>
                   </div>
                 </div>
                 <div class="mb-3">
@@ -84,6 +84,7 @@
     },
     data() {
       return {
+        username: '',
         name: '',
         email: '',
         password: '',
@@ -102,6 +103,7 @@
       registerAction() {
         this.isSubmitting = true;
         const payload = {
+          username: this.username,
           name: this.name,
           email: this.email,
           password: this.password,
@@ -109,23 +111,33 @@
 
         };
 
-        console.log("Register Payload:", payload);
+        console.log("Payload:", payload);
 
         //fetch("https://jsonplaceholder.typicode.com/todos/")
         //.then(r => r.json())
         //.then(console.log)
   
         axios
-          .post('/api/register', payload)
+          .post('/api/register/', payload)
           .then((response) => {
             this.isSubmitting = false;
-            localStorage.setItem('token', response.data.access_token);
-            this.$router.push('homeowner-dashboard');
+            //localStorage.setItem('access_token', response.data.access_token);
+          //this.$router.push({ name: 'homeownerDashboard'});
+          if (response.data.success) {
+            localStorage.setItem('access_token', response.data.access_token);
+            this.$router.push({ name: 'homeownerDashboard'});
+            console.log("Registration successful");
+          } else {
+            console.error("Registration failed:", response.data.message);
+          }
           })
           .catch((error) => {
             this.isSubmitting = false;
-            if (error.response && error.response.data.errors) {
-              this.validationErrors = error.response.data.errors;
+            console.error("Error:", error);
+            if (error.response) {
+                console.error("Error Response Data:", error.response.data);
+                console.error("Error Response Status:", error.response.status);
+                console.error("Error Response Headers:", error.response.headers);
             }
           });
       },
