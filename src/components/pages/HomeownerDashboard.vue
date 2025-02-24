@@ -11,33 +11,19 @@
             <h5 class="card-title">Homeowner Dashboard</h5>
           </div>
           <div v-if="dashboardData">
-            <p><strong>Welcome, {{  dashboardData.name }}!</strong></p>
-            <p>Your current location: {{  dashboardData.city }}, {{ dashboardData.state }}, {{ dashboardData.zip }}, {{ dashboardData.profilePic }}</p>
+            <p>
+              <strong>Welcome, {{ dashboardData.first_name }} {{ dashboardData.last_name }}!</strong>
+            </p>
+            <p>Your current location: {{ dashboardData.street_address }}{{ dashboardData.homeowner_city }}, {{ dashboardData.homeowner_state }} {{ dashboardData.homeowner_zip_code }}</p>
             <div>
               <img
-                v-if="dashboardData.profilePic"
-                :src="dashboardData.profilePic"
+                v-if="dashboardData.profile_pic"
+                :src="dashboardData.profile_pic"
                 alt="Profile Picture"
                 class="profile-pic"
               />
               <p v-else>No profile picture available.</p>
             </div>
-            <h6 class="mt-4">Pending Service Requests</h6>
-            <ul v-if="dashboardData.pendingRequests.length"> 
-              <li v-for="(request, index) in dashboardData.pendingRequests" :key="index">
-                {{  request.description  }} - {{ request.date }}
-              </li>
-            </ul>
-            <p v-else>No pending service requests.</p>
-
-            <h6 class="mt-4">Your Saved Arborists</h6>
-            <ul v-if="dashboardData.savedArborists.length">
-              <li v-for="(arborist, index) in dashboardData.savedArborists" :key="index">
-                {{ arborist.name }} ({{ arborist.companyName }})
-              </li>
-            </ul>
-            <p v-else>No saved arborists yet.</p>
-
             <button class="btn btn-primary mt-3" @click="viewSearchArborists">Find Arborists</button>
           </div>
           <div v-else>
@@ -56,12 +42,14 @@ import { defineComponent, DefineComponent } from 'vue';
 import { error } from 'console';
 
 interface DashboardData {
-  name: string;
-  city: string;
-  state: string;
-  zip: string;
-  profilePic: string;
-  pendingRequests: { description: string; date: string }[];
+  first_name: string;
+  last_name: string;
+  profile_pic: string,
+  street_address: string;
+  homeowner_city: string;
+  homeowner_state: string;
+  homeowner_zip_code: string;
+  pendingRequest: { description: string; date: string }[];
   savedArborists: { name: string; companyName: string }[];
 }
 
