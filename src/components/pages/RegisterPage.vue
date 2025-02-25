@@ -101,37 +101,15 @@ export default {
   methods: {
     registerAction() {
       this.isSubmitting = true;
-      const payload = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.confirmPassword,
-
-      };
-
-      console.log("Register Payload:", payload);
-
-      //fetch("https://jsonplaceholder.typicode.com/todos/")
-      //.then(r => r.json())
-      //.then(console.log)
-
-      axios
-        .post('/api/register', payload)
-        .then((response) => {
-          this.isSubmitting = false;
-          localStorage.setItem('token', response.data.access_token);
-          this.$router.push('homeowner-dashboard');
-        })
-        .catch((error) => {
-          this.isSubmitting = false;
-          if (error.response && error.response.data.errors) {
-            this.validationErrors = error.response.data.errors;
-          }
-        });
+      
+        
+        
+      this.isSubmitting = false;
+      this.$router.push('homeowner-dashboard');
     },
     redirectToLogin() {
-      this.$router.push('/login');
-    },
+    this.$router.push('/login');
   },
+},
 };
 </script>
