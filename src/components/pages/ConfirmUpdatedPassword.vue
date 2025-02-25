@@ -51,53 +51,43 @@
     </layout-div>
   </template>
   
-  <script>
-  import axios from 'axios';
-  import LayoutDiv from '../LayoutDiv.vue';
-  
-  export default {
-    name: 'ResetPasswordConfirm',
-    components: {
-      LayoutDiv,
-    },
-    data() {
-      return {
-        new_password: '',
-        confirm_password: '',
-        isSubmitting: false,
-        resetMessage: '',
-        errorMessage: '',
-      };
-    },
-    mounted() {
-          this.token = this.$route.query.token;
-    },
-    methods: {
-      resetPassword() {
-        this.isSubmitting = true;
-        if (this.new_password !== this.confirm_password) {
-          this.errorMessage = "Passwords do not match.";
-          this.isSubmitting = false;
-          return;
-        }
-        axios
-          .post(`/api/password_reset/confirm/`, {
-            new_password: this.new_password,
-            token: this.token,
-          })
-          .then(() => {
-            this.resetMessage = 'Password reset successfully.';
-            this.errorMessage = '';
-            this.isSubmitting = false;
-            this.$router.push('/login');
-          })
-          .catch((error) => {
-            this.errorMessage =
-              error.response?.data?.new_password?.[0] || 'An error occurred.';
-            this.resetMessage = '';
-            this.isSubmitting = false;
-          });
-      },
-    },
-  };
-  </script>
+  <script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import { useRoute, useRouter } from 'vue-router'; // Import useRouter
+import LayoutDiv from '../LayoutDiv.vue';
+
+const route = useRoute();
+const router = useRouter(); // Initialize the router
+const message = ref(null);
+const error = ref(null);
+
+onMounted(async () => {
+  const token = route.params.token;
+
+  try {
+    const response = await axios.post('/update/password', {
+      action: 'confirm',
+      token: token,
+    });
+    message.value = response.data.message;
+
+    // Redirect after successful password update (optional but recommended):
+    setTimeout(() => {
+     router.push('/login'); // Or wherever you want to redirect
+    }, 2000); // Redirect after 2 seconds (adjust as needed)
+
+
+  } catch (err) {
+    console.error(err);
+    if (err.response && err.response.data && err.response.data.error) {
+       error.value = err.response.data.error;
+    } else if (err.response) {
+      error.value = err.response.data.detail || 'An error occurred.';
+    }
+     else {
+       error.value = 'An error occurred.';
+     }
+  }
+});
+</script>
