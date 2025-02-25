@@ -16,7 +16,7 @@
                   v-model="name"
                 />
                 <div v-if="validationErrors.name" class="flex flex-col">
-                  <small class="text-danger">{{ validationErrors?.name[0] }}</small>
+                  <small class="text-danger">{{ validationErrors.name[0] }}</small>
                 </div>
               </div>
               <div class="mb-3">
@@ -29,7 +29,7 @@
                   v-model="email"
                 />
                 <div v-if="validationErrors.email" class="flex flex-col">
-                  <small class="text-danger">{{ validationErrors?.email[0] }}</small>
+                  <small class="text-danger">{{ validationErrors.email[0] }}</small>
                 </div>
               </div>
               <div class="mb-3">
@@ -42,7 +42,7 @@
                   v-model="password"
                 />
                 <div v-if="validationErrors.password" class="flex flex-col">
-                  <small class="text-danger">{{ validationErrors?.password[0] }}</small>
+                  <small class="text-danger">{{ validationErrors.password[0] }}</small>
                 </div>
               </div>
               <div class="mb-3">
@@ -54,12 +54,18 @@
                   name="confirm_password"
                   v-model="confirmPassword"
                 />
+                <div v-if="validationErrors.confirm_password" class="flex flex-col">
+                  <small class="text-danger">{{ validationErrors.confirm_password[0] }}</small>
+                </div>
               </div>
               <div class="d-grid gap-2">
-                 <button
+                <button
                   :disabled="isSubmitting"
                   type="button"
-                  @click="registerAction">Register</button>
+                  @click="registerAction"
+                >
+                  Register
+                </button>
                 <p class="text-center">
                   Already have an account
                   <a href="#" @click.prevent="redirectToLogin">Sign in</a>
@@ -75,13 +81,9 @@
 
 <script>
 import axios from 'axios';
-import LayoutDiv from '../LayoutDiv.vue';
 
 export default {
   name: 'RegisterPage',
-  components: {
-    LayoutDiv,
-  },
   data() {
     return {
       name: '',
@@ -92,24 +94,40 @@ export default {
       isSubmitting: false,
     };
   },
-  created() {
-    this.isAuthenticated = !!localStorage.getItem('access_token');
-    if (this.isAuthenticated) {
-      this.$router.push('/homeowner-dashboard');
-    }
-  },
   methods: {
-    registerAction() {
+    async registerAction() {
       this.isSubmitting = true;
-      
-        
-        
-      this.isSubmitting = false;
-      this.$router.push('homeowner-dashboard');
+      this.validationErrors = {};
+
+      try {
+        const response = await axios.post('api/register', {
+          name: this.username,
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.confirmPassword,
+        });
+
+        // Handle successful registration (e.g., redirect to login)
+        console.log('Registration successful:', response.data);
+        this.$router.push('/login'); // Example: redirect to login
+      } catch (error) {
+        if (error.response && error.response.data.errors) {
+          this.validationErrors = error.response.data.errors;
+        } else {
+          console.error('Registration error:', error);
+          // Handle other errors (e.g., display a generic error message)
+        }
+      } finally {
+        this.isSubmitting = false;
+      }
     },
     redirectToLogin() {
-    this.$router.push('/login');
+      this.$router.push('/login');
+    },
   },
-},
+  created() {
+    //The code inside of the created hook was not doing what a registration page should do.
+    //If you want to fetch user data after login you should do that in a component that is loaded after login.
+  }
 };
 </script>
