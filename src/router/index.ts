@@ -15,8 +15,8 @@ const routes = [
   { path: '/', component: Home }, // Redirect `/` to `/login`
   { path: '/login', component: LoginPage },
   { path: '/register', component: RegisterPage },
-  { path: 'update-password', component: UpdatePassword},
-  { path: 'confirm-updated-password', component: ConfirmUpdatedPassword},
+  { path: '/update-password', component: UpdatePassword},
+  { path: '/confirm-updated-password', component: ConfirmUpdatedPassword},
   { path: '/homeowner-dashboard', component: HomeownerDashboard, name: 'homeownerDashboard'},
   { path: '/search', component: SearchArborists },
 ];
