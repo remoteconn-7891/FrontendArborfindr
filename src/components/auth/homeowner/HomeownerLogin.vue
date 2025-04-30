@@ -11,7 +11,7 @@
                           </p>
                           <div class="mb-3">
                               <label for="email" class="form-label">Email address</label>
-                              <input 
+                              <input
                                   v-model="email"
                                   type="email"
                                   class="form-control"
@@ -21,7 +21,7 @@
                           </div>
                           <div class="mb-3">
                               <label for="password" class="form-label">Password</label>
-                              <input 
+                              <input
                                   v-model="password"
                                   type="password"
                                   class="form-control"
@@ -30,13 +30,13 @@
                               />
                           </div>
                           <div class="d-grid gap-2">
-                              <button 
+                              <button
                                   :disabled="isSubmitting"
                                   type="submit"
                                   class="btn btn-primary btn-block">Login
                               </button>
                               <p class="text-center">
-                                  Don't have an account? 
+                                  Don't have an account?
                                   <router-link to="/register">Register here</router-link>
                               </p>
                           </div>
@@ -88,3 +88,4 @@ export default {
   },
 };
 </script>
+

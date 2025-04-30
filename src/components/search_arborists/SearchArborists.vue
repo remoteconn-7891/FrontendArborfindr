@@ -9,7 +9,7 @@
                 placeholder="Search for arborists by location, services"
                 @keyup.enter="performSearch"
                 />
-                <button class="btn btn-primary" @click="performSearch">Search arborists</button>           
+                <button class="btn btn-primary" @click="performSearch">Search arborists</button>
             </div>
             <div v-if="results.length" class="list-group">
                 <a
@@ -24,17 +24,17 @@
             </a>
             </div>
             <div v-else-if="hasSearched" class="text-center">
-                <p>No results found for "{{ searchQuery }}".</p>           
+                <p>No results found for "{{ searchQuery }}".</p>
             </div>
         </div>
         <div id="map" style="height: 500px;"></div>
     </LayoutDiv>
     </template>
-    
+
     <script>
     import axios from 'axios';
     import LayoutDiv from '../LayoutDiv.vue';
-    
+
     export default {
         name: 'SearchArborists',
         components: {
@@ -50,8 +50,8 @@
         methods: {
             performSearch() {
                 if (!this.searchQuery) return;
-    
-    
+
+
                 // Simulate API call
                 axios
                     .get('/api/search', {
@@ -70,13 +70,13 @@
         },
     }
     </script>
-    
+
     <style scoped>
     .input-group {
         margin-top: 20px;
     }
-    
-    
+
+
     .list-group-item h5 {
         margin: 0;
     }

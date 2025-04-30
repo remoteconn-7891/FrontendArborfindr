@@ -7,26 +7,25 @@
       </div>
     </div>
   </template>
-  
+
   <script setup lang="ts">
   // You can import other components, or add any necessary logic in this section.
   </script>
-  
+
   <style scoped>
   .home {
     text-align: center;
     padding: 2rem;
   }
-  
+
   .home h1 {
     font-size: 2rem;
     color: #333;
   }
-  
+
   .home .home-content {
     margin-top: 1rem;
     font-size: 1rem;
     color: #666;
   }
   </style>
-  
