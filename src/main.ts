@@ -5,6 +5,8 @@ import App from './App.vue';
 import axios from 'axios';
 // axios.defaults.baseURL = 'http://localhost:8000';
 
+
+
 // Set up axios default base URL using environment variable
 axios.defaults.baseURL = import.meta.env.VITE_APP_API_URL;
 
