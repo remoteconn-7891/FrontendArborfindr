@@ -9,8 +9,8 @@ import SearchArborists from '../components/auth/search_arborists/SearchArborists
 import BusinessDashboard from '../components/auth/business_network/BusinessDashboard.vue';
 import BusinessLogin from '../components/auth/business_network/BusinessLogin.vue';
 import BusinessRegister from '../components/auth/business_network/BusinessRegister.vue';
-
-
+import BusinessUpdatePassword from '@/components/auth/business_network/BusinessUpdatePassword.vue';
+import BusinessConfirmUpdatedPassword from '@/components/auth/business_network/BusinessConfirmUpdatedPassword.vue';
 
 
 
@@ -25,6 +25,8 @@ const routes = [
   { path: '/business_dashboard', component: BusinessDashboard},
   { path: '/business_login', component: BusinessLogin},
   { path: '/business_register', component: BusinessRegister},
+  { path: '/business-update-password', component: BusinessUpdatePassword},
+  { path: '/business-confirm-updated-password', component: BusinessConfirmUpdatedPassword},
   { path: '/business_message', component: BusinessMessenger},
   { path: '/message_list', component: MessageList},
 ];
