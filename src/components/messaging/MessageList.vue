@@ -7,8 +7,19 @@
         <button @click="editMessage(index)">Edit</button>
         <button @click="deleteMessage(index)">Delete</button>
       </li>
+      <li @click="markAsRead(index)">
+      <li
+  v-for="(msg, index) in messages"
+  :key="index"
+  :class="{ 'new-message': !msg.read }"
+    >
+  {{ msg.username }}: {{ msg.message }}
+    </li>
+
     </ul>
   </div>
+
+
 </template>
 
 <script setup>
@@ -33,10 +44,30 @@ const editMessage = (index) => {
   }
 };
 
+const markAsRead = (index) => {
+  messages.value[index].read = true;
+  unreadMessages.value = Math.max(0, unreadMessages.value - 1);
+};
+
+
 // Delete a message
 const deleteMessage = (index) => {
   const msgToDelete = messages.value[index];
   ws.send(JSON.stringify({ type: "delete", data: msgToDelete }));
   messages.value.splice(index, 1);
 };
+
+  .notification-badge {
+  background-color: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.new-message {
+  font-weight: bold;
+  color: blue;
+}
+
 </script>
