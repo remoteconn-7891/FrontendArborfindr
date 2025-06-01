@@ -2,24 +2,18 @@
   <div>
     <h2>Messages</h2>
     <ul>
-      <li v-for="(msg, index) in messages" :key="index">
+      <li
+        v-for="(msg, index) in messages"
+        :key="index"
+        :class="{ 'new-message': !msg.read }"
+        @click="markAsRead(index)"
+      >
         <span>{{ msg.username }}: {{ msg.message }}</span>
         <button @click="editMessage(index)">Edit</button>
         <button @click="deleteMessage(index)">Delete</button>
       </li>
-      <li @click="markAsRead(index)">
-      <li
-  v-for="(msg, index) in messages"
-  :key="index"
-  :class="{ 'new-message': !msg.read }"
-    >
-  {{ msg.username }}: {{ msg.message }}
-    </li>
-
     </ul>
   </div>
-
-
 </template>
 
 <script setup>
@@ -27,11 +21,16 @@ import { ref } from "vue";
 import ws from "@/services/websocketService";
 
 const messages = ref([]);
+const unreadMessages = ref(0);
 
 // Receive new messages
 ws.onmessage = (event) => {
   const data = JSON.parse(event.data);
   messages.value.push(data);
+
+  if (!data.read && data.username !== "User") {
+    unreadMessages.value++;
+  }
 };
 
 // Edit a message
@@ -44,11 +43,13 @@ const editMessage = (index) => {
   }
 };
 
+// Mark a message as read
 const markAsRead = (index) => {
-  messages.value[index].read = true;
-  unreadMessages.value = Math.max(0, unreadMessages.value - 1);
+  if (!messages.value[index].read) {
+    messages.value[index].read = true;
+    unreadMessages.value = Math.max(0, unreadMessages.value - 1);
+  }
 };
-
 
 // Delete a message
 const deleteMessage = (index) => {
@@ -56,8 +57,10 @@ const deleteMessage = (index) => {
   ws.send(JSON.stringify({ type: "delete", data: msgToDelete }));
   messages.value.splice(index, 1);
 };
+</script>
 
-  .notification-badge {
+<style scoped>
+.notification-badge {
   background-color: red;
   color: white;
   padding: 5px 10px;
@@ -69,5 +72,5 @@ const deleteMessage = (index) => {
   font-weight: bold;
   color: blue;
 }
+</style>
 
-</script>
